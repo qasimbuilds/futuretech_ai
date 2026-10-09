@@ -195,6 +195,30 @@
     .profile-note{font-size:.78rem;color:#64748B;margin-top:14px}
     .field-honeypot{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
 
+
+    .blog-section{background:linear-gradient(180deg,#fff 0%,#F8FAFC 100%)}
+    .blog-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+    .blog-card{overflow:hidden;border:1px solid var(--line);border-radius:22px;background:#fff;box-shadow:0 12px 32px #0f172a08;transition:transform .25s,box-shadow .25s,border-color .25s}
+    .blog-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-hover);border-color:#C7D2FE}
+    .blog-art{height:165px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#fff;font:800 1.5rem Manrope,sans-serif;letter-spacing:.08em}
+    .blog-art:before,.blog-art:after{content:"";position:absolute;border:1px solid #ffffff50;border-radius:50%;width:210px;height:210px;transform:rotateX(60deg)}
+    .blog-art:after{width:150px;height:150px;transform:rotateX(60deg) rotateZ(35deg)}
+    .blog-art span{position:relative;z-index:1}
+    .blog-art i{position:absolute;right:22px;bottom:12px;font-size:2.2rem;font-style:normal;opacity:.8}
+    .blog-art-indigo{background:linear-gradient(135deg,#312E81,#6366F1)}
+    .blog-art-green{background:linear-gradient(135deg,#065F46,#10B981)}
+    .blog-art-mix{background:linear-gradient(135deg,#4338CA,#059669)}
+    .blog-content{padding:23px}
+    .blog-category{display:inline-block;padding:5px 9px;border-radius:999px;background:#EEF2FF;color:#4338CA;font-size:.7rem;font-weight:900;letter-spacing:.04em}
+    .blog-content h3{font-size:1.12rem;line-height:1.35;margin:14px 0 10px}
+    .blog-content p{font-size:.9rem;color:var(--muted);margin:0 0 18px}
+    .blog-link{display:inline-flex;gap:8px;align-items:center;color:var(--indigo);font-weight:900;font-size:.88rem}
+    .blog-link:hover{color:var(--emerald-dark)}
+    .blog-cta{display:flex;justify-content:center;align-items:center;gap:18px;flex-wrap:wrap;margin-top:32px}
+    .blog-cta p{color:var(--muted);margin:0}
+    @media(max-width:900px){.blog-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:650px){.blog-grid{grid-template-columns:1fr}.blog-art{height:145px}.blog-content{padding:20px}.blog-cta{flex-direction:column;gap:12px}}
+
     .contact{background:linear-gradient(180deg,#F1F5F9,#F8FAFC)}
     .contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:45px;align-items:start}
     .contact-copy h2{margin-top:12px}
@@ -247,6 +271,7 @@
       <div class="navlinks" id="siteMenu">
         <a href="#services">Services</a>
         <a href="#about-qasim">About Qasim</a>
+        <a href="#blogs">Blog</a>
         <a href="#why">Why FutureTech</a>
         <a href="#contact">Contact</a>
       </div>
@@ -328,6 +353,50 @@
       </div>
     </section>
 
+
+    <section class="section blog-section" id="blogs" aria-labelledby="blogs-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="kicker">Insights & guides</div>
+          <h2 id="blogs-title">Practical ideas for <span class="text-gradient">smarter growth.</span></h2>
+          <p>Explore useful articles about CRM, lead management, automation, and digital growth.</p>
+        </div>
+        <div class="blog-grid">
+          <article class="blog-card reveal">
+            <div class="blog-art blog-art-indigo" aria-hidden="true"><span>CRM</span><i>↗</i></div>
+            <div class="blog-content">
+              <span class="blog-category">CRM & Operations</span>
+              <h3>How CRM Automation Helps Small Businesses Follow Up Faster</h3>
+              <p>Learn how structured lead capture, ownership, reminders, and follow-up workflows can reduce missed opportunities.</p>
+              <a class="blog-link" href="/blog/">Read articles <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+          <article class="blog-card reveal delay-1">
+            <div class="blog-art blog-art-green" aria-hidden="true"><span>LEADS</span><i>◎</i></div>
+            <div class="blog-content">
+              <span class="blog-category">Lead Management</span>
+              <h3>From Website Form to Google Sheets: A Simple Lead Workflow</h3>
+              <p>See how a business can collect inquiries, organize them in a spreadsheet, and notify the right person.</p>
+              <a class="blog-link" href="/blog/">Read articles <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+          <article class="blog-card reveal delay-2">
+            <div class="blog-art blog-art-mix" aria-hidden="true"><span>AI + WORKFLOWS</span><i>✦</i></div>
+            <div class="blog-content">
+              <span class="blog-category">AI & Automation</span>
+              <h3>Where AI Automation Fits—and Where a Simple Workflow Is Better</h3>
+              <p>A practical way to choose between AI, rules-based automation, and a straightforward process improvement.</p>
+              <a class="blog-link" href="/blog/">Read articles <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+        </div>
+        <div class="blog-cta reveal">
+          <p>Looking for a specific topic?</p>
+          <a class="btn btn-outline" href="/blog/">Browse all blog posts <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="why">
       <div class="container why-grid">
         <div class="why-copy reveal"><div class="kicker">A practical approach</div><h2>Less tool chaos.<br><span class="text-gradient">More operational clarity.</span></h2><p>Automation works best when it solves a specific bottleneck. We start with your current process, choose a practical solution, and connect the tools that need to work together.</p><a class="btn btn-primary" href="#contact">Tell us what you need <span aria-hidden="true">↗</span></a></div>
@@ -378,7 +447,7 @@
     </section>
   </main>
 
-  <footer><div class="container footer-row"><a class="footer-brand" href="#home">FutureTech AI.</a><div class="footer-links"><a href="#services">Services</a><a href="#about-qasim">About Qasim</a><a href="#contact">Contact</a><a href="mailto:qasim@qasimbuilds.online">Email</a><a href="tel:+919403140692">+91 9403140692</a></div><span style="font-size:.8rem">© <span id="year"></span> FutureTech AI · Founded by Qasim Shaikh</span></div></footer>
+  <footer><div class="container footer-row"><a class="footer-brand" href="#home">FutureTech AI.</a><div class="footer-links"><a href="#services">Services</a><a href="#about-qasim">About Qasim</a><a href="#blogs">Blog</a><a href="#contact">Contact</a><a href="mailto:qasim@qasimbuilds.online">Email</a><a href="tel:+919403140692">+91 9403140692</a></div><span style="font-size:.8rem">© <span id="year"></span> FutureTech AI · Founded by Qasim Shaikh</span></div></footer>
 
   <script>
 
