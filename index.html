@@ -84,7 +84,7 @@
     body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:
       radial-gradient(ellipse at 5% 8%,rgba(99,102,241,.09),transparent 34%),
       radial-gradient(ellipse at 95% 38%,rgba(16,185,129,.07),transparent 28%)}
-    a{color:inherit;text-decoration:none}
+    a{color:inherit;text-decoration:none}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #818CF8;outline-offset:3px}
     button,input,select,textarea{font:inherit}
     .container{width:min(1160px,calc(100% - 40px));margin:auto}
     .topbar{position:sticky;top:0;z-index:20;background:rgba(248,250,252,.82);backdrop-filter:blur(18px);border-bottom:1px solid rgba(226,232,240,.8)}
@@ -94,6 +94,23 @@
     .brand-mark svg{width:23px;height:23px}
     .navlinks{display:flex;align-items:center;gap:27px;font-size:.92rem;font-weight:700;color:#475569}
     .navlinks a:hover{color:var(--indigo)}
+
+    .menu-toggle{display:none;width:44px;height:44px;border:1px solid var(--line);border-radius:12px;background:#fff;align-items:center;justify-content:center;flex-direction:column;gap:5px;cursor:pointer}
+    .menu-toggle span{display:block;width:19px;height:2px;border-radius:2px;background:var(--ink);transition:transform .2s,opacity .2s}
+    .menu-toggle[aria-expanded="true"] span:first-child{transform:translateY(7px) rotate(45deg)}
+    .menu-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+    .menu-toggle[aria-expanded="true"] span:last-child{transform:translateY(-7px) rotate(-45deg)}
+    .navlinks a{padding:8px 0}
+    @media(max-width:760px){
+      .nav{position:relative}
+      .menu-toggle{display:flex;flex:0 0 auto}
+      .nav>.btn{margin-left:auto}
+      .navlinks{display:none;position:absolute;top:calc(100% + 1px);left:-15px;right:-15px;padding:14px 20px 20px;background:rgba(255,255,255,.98);border:1px solid var(--line);border-top:0;border-radius:0 0 18px 18px;box-shadow:0 18px 35px #0f172a12;align-items:stretch;gap:4px;flex-direction:column}
+      .navlinks.open{display:flex}
+      .navlinks a{padding:12px 8px;border-radius:9px}
+      .navlinks a:hover{background:#EEF2FF}
+    }
+
     .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:1px solid transparent;border-radius:12px;padding:13px 19px;font-weight:800;font-size:.92rem;cursor:pointer;transition:transform .22s,box-shadow .22s,background .22s}
     .btn:hover{transform:translateY(-2px)}
     .btn-primary{background:linear-gradient(135deg,var(--indigo),#5B50E6);color:white;box-shadow:0 10px 24px #4338ca30}
@@ -212,7 +229,8 @@
     @keyframes orbit{to{transform:rotateX(68deg) rotateZ(342deg)}}
     @keyframes barPulse{from{filter:saturate(.85);transform:scaleY(.91)}to{filter:saturate(1.15);transform:scaleY(1)}}
     @media(max-width:900px){.hero{grid-template-columns:1fr;gap:18px;padding-top:65px}.hero-visual{min-height:460px}.hero-copy{max-width:680px}.service-grid{grid-template-columns:repeat(2,1fr)}.why-grid,.contact-grid{grid-template-columns:1fr;gap:30px}.chip-one{right:0}}
-    @media(max-width:900px){.profile-grid{grid-template-columns:1fr;gap:24px}.profile-visual{min-height:390px}.profile-copy{max-width:720px;margin:auto}}\n    @media(max-width:650px){.container{width:min(100% - 30px,1160px)}.nav{height:70px}.navlinks{display:none}.nav>.btn{padding:10px 12px;font-size:.8rem}.hero{padding:52px 0 58px}.hero-visual{min-height:390px}.system-card{padding:17px;transform:none}.chip-one{top:4%;right:0}.chip-two{bottom:4%;left:0}.float-chip{font-size:.72rem;padding:9px 11px}.orbital{width:85%}.section{padding:66px 0}.service-grid{grid-template-columns:1fr}.profile-grid{grid-template-columns:1fr;gap:28px}.profile-visual{min-height:360px;order:0}.profile-copy{order:1}.profile-stamp{right:2%;bottom:4%}.form-grid{grid-template-columns:1fr;gap:0}.form-card{padding:22px}.proofline{gap:10px}.hero-actions .btn{width:100%}h1{font-size:clamp(2.65rem,12vw,4rem)}}
+    @media(max-width:900px){.profile-grid{grid-template-columns:1fr;gap:24px}.profile-visual{min-height:390px}.profile-copy{max-width:720px;margin:auto}}
+    @media(max-width:650px){.container{width:min(100% - 30px,1160px)}.nav{height:70px}.navlinks{display:none}.nav>.btn{padding:9px 10px;font-size:.76rem;white-space:nowrap}.brand{font-size:1rem;gap:7px}.brand-mark{width:34px;height:34px;border-radius:11px}.hero{padding:52px 0 58px}.hero-visual{min-height:390px}.system-card{padding:17px;transform:none}.chip-one{top:4%;right:0}.chip-two{bottom:4%;left:0}.float-chip{font-size:.72rem;padding:9px 11px}.orbital{width:85%}.section{padding:66px 0}.service-grid{grid-template-columns:1fr}.profile-grid{grid-template-columns:1fr;gap:28px}.profile-visual{min-height:360px;order:0}.profile-copy{order:1}.profile-stamp{right:2%;bottom:4%}.form-grid{grid-template-columns:1fr;gap:0}.form-card{padding:22px}.proofline{gap:10px}.hero-actions .btn{width:100%}h1{font-size:clamp(2.65rem,12vw,4rem)}}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;scroll-behavior:auto!important;transition:none!important}.reveal{opacity:1;transform:none}}
   </style>
 </head>
@@ -223,7 +241,15 @@
         <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 18V6h14M5 12h10M14 6v12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
         <span>FutureTech <span class="text-gradient">AI.</span></span>
       </a>
-      <div class="navlinks"><a href="#services">Services</a><a href="#why">Why FutureTech</a><a href="#contact">Contact</a></div>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation menu" aria-controls="siteMenu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="navlinks" id="siteMenu">
+        <a href="#services">Services</a>
+        <a href="#about-qasim">About Qasim</a>
+        <a href="#why">Why FutureTech</a>
+        <a href="#contact">Contact</a>
+      </div>
       <a class="btn btn-primary" href="#contact">Discuss a project <span aria-hidden="true">↗</span></a>
     </nav>
   </header>
@@ -276,7 +302,7 @@
           <div class="profile-frame">
             <div class="profile-fallback" aria-hidden="true"><strong>QS</strong><span>Qasim Shaikh</span></div>
             <!-- Add your real portrait at assets/qasim-shaikh.jpg. The photo should be professional, clear, and yours. -->
-            <img src="assets/qasim-shaikh.jpg" alt="Qasim Shaikh, founder of FutureTech AI and CRM automation specialist" loading="lazy" onerror="this.style.display='none'">
+            <img src="qasim-shaikh.jpg" alt="Qasim Shaikh, founder of FutureTech AI and CRM automation specialist" loading="lazy" onerror="this.style.display='none'">
           </div>
           <div class="profile-stamp">Qasim Shaikh<small>Founder, FutureTech AI</small></div>
         </div>
@@ -297,7 +323,7 @@
             <a class="btn btn-primary" href="https://www.linkedin.com/in/qasim-shaikh-/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn ↗</a>
             <a class="btn btn-outline" href="https://qasimbuilds.online/" target="_blank" rel="noopener noreferrer">View my portfolio</a>
           </div>
-          <p class="profile-note">The photo area currently uses initials until you add your actual portrait file. No fake profile image is being used.</p>
+          
         </div>
       </div>
     </section>
@@ -325,8 +351,7 @@
         <div class="form-card reveal delay-1">
           <h3>Project inquiry</h3><p class="form-intro">Fields marked * are required. Your information will be used to respond to this inquiry.</p>
           <!-- After deploying Code.gs as a Google Apps Script Web App, paste its /exec URL below. -->
-         <form id="leadForm"
-      data-endpoint="https://script.google.com/macros/s/AKfycbxphil2bGG9fU_A19Pj0F9L4nhwIR7UMEfcQK_zcJBWur6F2ZpzXWwjaY1x3ZilioTpTA/exec">
+          <form id="leadForm" data-endpoint="https://script.google.com/macros/s/AKfycbxphil2bGG9fU_A19Pj0F9L4nhwIR7UMEfcQK_zcJBWur6F2ZpzXWwjaY1x3ZilioTpTA/exec" novalidate>
             <div class="field-honeypot" aria-hidden="true"><label for="website">Leave this field empty</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
             <div class="form-grid">
               <div class="field"><label for="name">Full name *</label><input id="name" name="name" autocomplete="name" required minlength="2" placeholder="Your name"></div>
@@ -346,7 +371,7 @@
             <div class="consent"><input id="consent" name="consent" type="checkbox" value="yes" required><label for="consent">I agree that FutureTech AI may use these details to respond to my inquiry.</label></div>
             <button class="btn btn-primary submit" id="submitBtn" type="submit">Send project inquiry <span aria-hidden="true">↗</span></button>
             <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
-            <p class="form-note">Submissions are designed to go to your private Google Sheet and email inbox after you deploy and connect the Apps Script endpoint. No n8n server or paid automation host is required.</p>
+            <p class="form-note">Your inquiry is submitted to the configured Google Apps Script endpoint. Please do not include passwords or other sensitive information.</p>
           </form>
         </div>
       </div>
@@ -356,6 +381,33 @@
   <footer><div class="container footer-row"><a class="footer-brand" href="#home">FutureTech AI.</a><div class="footer-links"><a href="#services">Services</a><a href="#about-qasim">About Qasim</a><a href="#contact">Contact</a><a href="mailto:qasim@qasimbuilds.online">Email</a><a href="tel:+919403140692">+91 9403140692</a></div><span style="font-size:.8rem">© <span id="year"></span> FutureTech AI · Founded by Qasim Shaikh</span></div></footer>
 
   <script>
+
+    // Accessible mobile navigation.
+    const menuToggle = document.getElementById('menuToggle');
+    const siteMenu = document.getElementById('siteMenu');
+    if (menuToggle && siteMenu) {
+      menuToggle.addEventListener('click', () => {
+        const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.setAttribute('aria-expanded', String(!isOpen));
+        menuToggle.setAttribute('aria-label', isOpen ? 'Open navigation menu' : 'Close navigation menu');
+        siteMenu.classList.toggle('open', !isOpen);
+      });
+      siteMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          siteMenu.classList.remove('open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+          menuToggle.setAttribute('aria-label', 'Open navigation menu');
+        });
+      });
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+          siteMenu.classList.remove('open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+          menuToggle.setAttribute('aria-label', 'Open navigation menu');
+        }
+      });
+    }
+
     document.getElementById('year').textContent = new Date().getFullYear();
     document.getElementById('pageUrl').value = window.location.href;
 
